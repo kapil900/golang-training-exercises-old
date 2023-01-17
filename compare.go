@@ -1,14 +1,21 @@
-package main
+package compareutil
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func CommonString(a, b string) string {
+	start := time.Now()
+
+	defer fmt.Println(time.Now().Format(time.RFC850))
 
 	solution := ""
 	count := 0
 	for i := 0; i < len(a); i++ {
 		if a[i] == b[0] {
 			for j := 0; j < len(b); j++ {
+
 				if a[i+j] != b[j] {
 					count = 0
 					break
@@ -24,11 +31,8 @@ func CommonString(a, b string) string {
 			}
 		}
 	}
+	end := time.Since(start)
+	fmt.Println(end)
+
 	return solution
-}
-
-func main() {
-
-	fmt.Println(CommonString("hello", "hell"))
-
 }
